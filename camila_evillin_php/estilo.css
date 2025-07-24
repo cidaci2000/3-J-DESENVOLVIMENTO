@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#aaa {
+    background-color: rgb(222, 237, 255);
+    display: inline-block;
+    font-size: 1.5em; /* Ajustado para ser mais legível */
+    width: 80%; /* Ajustado para se adaptar melhor ao tamanho da tela */
+    max-width: 650px; /* Limite de largura para telas grandes */
+    border-radius: 20px;
+    padding: 20px;
+    margin-left: 30%;
+    box-sizing: border-box; /* Para incluir padding no cálculo da largura */
+    align-content: center;
+}
+
+#aaa h2 {
+    margin-top: 0; /* Remove margem superior do título */
+}
+
+input[type="text"],
+input[type="nome"],
+input[type="cpf"],
+input[type="email"],
+input[type="password"],
+input[type="submit"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 15px;
+    width: calc(100% - 22px); 
+}
+
+.y {
+    background-color: rgb(159, 187, 221);
+    font-size: 1em; 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#cabecalho {
+    background-color: rgb(127, 159, 201);
+    color: rgb(29, 29, 41);
+    text-align: center;
+    font-style: oblique;
+    font-size: 100px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+#sss {
+    background-color: rgb(166, 196, 231);
+    font-size: 1.2em;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#sss a {
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    margin: 0 15px;
+}
+
+#sss a:hover {
+    background-color: rgb(202, 225, 245);
+    transition: background-color 0.5s;
+}
+
+#inicial {
+    background-color: rgb(189, 213, 241);
+    padding: 50px;
+}
+
+.vitrine {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: rgb(222, 237, 255);
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.card p {
+    margin: 0;
+    font-size: 1.1em;
+    color: rgb(85, 85, 85);
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: rgb(29, 29, 41);
+    border: 1px solid rgb(29, 29, 41);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.card a:hover {
+    background-color: rgb(202, 225, 245);
+}
+
+#rodape {
+    background-color: rgb(127, 159, 201);
+    color: rgb(29, 29, 41);
+    text-align: center;
+    font-style: oblique;
+    font-size: 1em;
+    padding: 40px;
+}
+
+a{
+    text-decoration: none;
+    color:blue;
+}
+
+
