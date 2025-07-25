@@ -1,0 +1,203 @@
+/* Estilos específicos para a página de cadastro */
+
+.cadastro-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.cadastro-form {
+    flex: 1;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-header h2 {
+    color: var(--azul-escuro);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: #666;
+}
+
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    flex: 1;
+    position: relative;
+}
+
+.input-group.full-width {
+    flex: 0 0 100%;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--azul-escuro);
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    border: 1px solid var(--cinza-medio);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--vermelho);
+    box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+}
+
+.input-group i {
+    position: absolute;
+    left: 1rem;
+    top: 2.3rem;
+    color: var(--cinza-escuro);
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.btn-cadastrar {
+    background-color: var(--vermelho);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    width: 100%;
+    max-width: 300px;
+}
+
+.btn-cadastrar:hover {
+    background-color: #d62839;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-actions p {
+    margin-top: 1rem;
+    color: #666;
+}
+
+.form-actions a {
+    color: var(--vermelho);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-actions a:hover {
+    text-decoration: underline;
+}
+
+.cadastro-beneficios {
+    width: 350px;
+    background-color: var(--azul-escuro);
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cadastro-beneficios h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.cadastro-beneficios ul {
+    list-style: none;
+    position: relative;
+    z-index: 2;
+}
+
+.cadastro-beneficios li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.cadastro-beneficios i {
+    color: var(--vermelho);
+    font-size: 1.2rem;
+}
+
+.cadastro-image {
+    margin-top: 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.cadastro-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Efeito de fundo */
+.cadastro-beneficios::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .cadastro-container {
+        flex-direction: column;
+    }
+    
+    .cadastro-beneficios {
+        width: 100%;
+        order: -1;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .cadastro-container {
+        padding: 2rem 1rem;
+    }
+    
+    .cadastro-form {
+        padding: 1.5rem;
+    }
+}
