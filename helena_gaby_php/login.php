@@ -1,3 +1,50 @@
+<?php
+session_start();
+include_once('config.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $senha = $_POST["senha"];
+
+    if (empty($email) || empty($senha)) {
+        $erro = "Por favor, preencha todos os campos.";
+    } else {
+        $stmt = $conexao->prepare("SELECT id, email, senha, tipo_usuario FROM usuarios WHERE email = ?");
+        $stmt->bind_param("s", $email);  // Corrigido de "ss" para "s" (apenas 1 parâmetro)
+
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+
+            if ($result->num_rows === 1) {
+                $usuario = $result->fetch_assoc();
+                
+                if (password_verify($senha, $usuario['senha'])) {
+                    $_SESSION['usuario_id'] = $usuario['id'];
+                    $_SESSION['usuario_email'] = $usuario['email'];
+                    $_SESSION['usuario_tipo'] = $usuario['tipo'];
+
+                    if ($usuario['tipo'] == 1) {
+                        header("Location: admin.php");
+                    } elseif ($usuario['tipo'] == 2) {
+                        header("Location: profissional.php");
+                    } else {
+                        header("Location: carrinho.php");
+                    }
+                    exit();
+                } else {
+                    $erro = "Credenciais inválidas.";
+                }
+            } else {
+                $erro = "Credenciais inválidas.";
+            }
+        } else {
+            $erro = "Erro ao autenticar: " . $conexao->error;
+        }
+        $stmt->close();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -51,7 +98,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-top: 80px;
+            padding: 80px 0; /* Alterado para padding top e bottom */
         }
 
         .login-section {
@@ -62,6 +109,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            position: relative; /* Adicionado para posicionar o link voltar */
         }
 
         .login-section h2 {
@@ -74,6 +122,16 @@
             font-size: 14px;
             color: #ddd;
             margin-bottom: 20px;
+        }
+
+        /* Mensagens de erro */
+        .erro {
+            color: #ff6b6b;
+            background: #fff0f0;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-weight: bold;
         }
 
         /* Formulário */
@@ -108,6 +166,7 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin-top: 10px;
         }
 
         input[type="submit"]:hover {
@@ -117,11 +176,11 @@
         /* Link para recuperar a senha */
         .forgot-password,
         .nao-tem-conta {
-            font-size: 12px;
-            margin-bottom: 10px;
+            font-size: 14px; /* Tamanho aumentado */
+            margin: 10px 0;
             display: block;
             color: #3498db;
-            text-align: right;
+            text-align: center; /* Centralizado */
             text-decoration: none;
         }
 
@@ -133,15 +192,15 @@
 
         /* Link para voltar ao início */
         #voltar {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 18px;
+            display: block;
+            margin-top: 20px;
+            font-size: 16px;
             background-color: #ffffff;
             color: #000;
-            padding: 5px 10px;
+            padding: 8px 15px;
             text-decoration: none;
             border-radius: 5px;
+            text-align: center;
         }
 
         #voltar:hover {
@@ -154,9 +213,9 @@
             background-color: #333;
             color: white;
             padding: 10px;
-            position: fixed;
             width: 100%;
-            bottom: 0;
+            
+            margin-top: auto;
         }
 
     </style>
@@ -172,7 +231,7 @@
         <a href="produtos.php">Produtos</a>
         <a href="marcas.php">Marcas</a>
         <a href="login.php" id="atual">Login</a>
-        <a href="carinho.php">Carrinho</a>
+        <a href="carrinho.php">Carrinho</a> <!-- Corrigido: carinho.php → carrinho.php -->
     </div>
 </header>
 
@@ -181,14 +240,19 @@
     <div class="login-section">
         <h2>Login</h2>
         <p>Entre com sua conta para acessar os recursos exclusivos.</p>
+        
+        <!-- Exibição de erros -->
+        <?php if(isset($erro)): ?>
+            <div class="erro"><?php echo $erro; ?></div>
+        <?php endif; ?>
 
         <!-- Formulário de login -->
-        <form action="#" method="POST">
+        <form method="POST" action=""> <!-- Corrigido: method e action -->
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
 
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required> <!-- Corrigido: type="password" -->
 
             <input type="submit" value="Entrar">
 
@@ -200,7 +264,7 @@
     </div>
 </section>
 
-<!-- Footer opcional -->
+<!-- Footer -->
 <footer>
     © 2025 Potulski Joias - Todos os direitos reservados.
 </footer>
