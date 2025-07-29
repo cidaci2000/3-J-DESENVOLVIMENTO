@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #a2bbbd;
+}
+
+header {
+    background: #333;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #333;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.sobre-nos {
+    background-color: #363636;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+}
+
+.sobre-nos h2 {
+    color: #ffffff;
+    border-left: 4px solid #c19a6b;
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+.sobre-nos p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+.redes-sociais {
+    margin-top: 10px;
+}
+
+.redes-sociais a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.redes-sociais a:hover {
+    color: #c19a6b;
+}
